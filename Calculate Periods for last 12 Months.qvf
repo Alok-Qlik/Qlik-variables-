@@ -1,0 +1,70 @@
+-------Variable script to store Periods in variable 
+
+let MonthMap = 'AUG|SEP|OCT|NOV|DEC|JAN|FEB|MAR|APR|MAY|JUN|JUL';
+
+// Define the active period 
+ let vActivePeriod = 'MAR-FY25';
+
+// Extract the current month and fiscal year from the active period
+let vCurrentMonth = SubField(vActivePeriod, '-', 1);
+let vFiscalYear = SubField(vActivePeriod, '-', 2);
+
+// Calculate the index of the current month in the fiscal year
+let vCurrentMonthIndex = (Index(MonthMap, vCurrentMonth) - 1) / 4 + 1;
+
+let i = 0;
+let vPreviousPeriods = '';
+
+// Loop to calculate the previous 13 periods
+Do
+    // Calculate the index of the previous month, wrapping around if necessary
+    let vPreviousMonthIndex = Mod(vCurrentMonthIndex - i - 1, 12) + 1;
+    let vPreviousMonth = SubField(MonthMap, '|', vPreviousMonthIndex);
+
+    // Determine the fiscal year for the previous month
+    if (i = 0 OR vCurrentMonth = 'JUL') then
+        let vPreviousFiscalYear = vFiscalYear;
+    end if
+
+    // Adjust the fiscal year if transitioning from July to August
+    if vPreviousMonth = 'JUL' then
+        let vPreviousFiscalYear = 'FY' & ((Num(SubField(vFiscalYear, 'FY', 2)) - 1));
+    end if;
+
+    // Construct the previous period string
+    let vPreviousPeriod = vPreviousMonth & '-' & vPreviousFiscalYear;
+
+    // Append the previous period to the list
+    let vPreviousPeriods = vPreviousPeriods & '|' & vPreviousPeriod;
+
+    // Increment the loop counter
+    let i = i + 1;
+Loop While i <= 12;
+
+// Store each period in separate variables
+let vPreviousPeriod1 = SubField(vPreviousPeriods, '|', 3);
+let vPreviousPeriod2 = SubField(vPreviousPeriods, '|', 4);
+let vPreviousPeriod3 = SubField(vPreviousPeriods, '|', 5);
+let vPreviousPeriod4 = SubField(vPreviousPeriods, '|', 6);
+let vPreviousPeriod5 = SubField(vPreviousPeriods, '|', 7);
+let vPreviousPeriod6 = SubField(vPreviousPeriods, '|', 8);
+let vPreviousPeriod7 = SubField(vPreviousPeriods, '|', 9);
+let vPreviousPeriod8 = SubField(vPreviousPeriods, '|', 10);
+let vPreviousPeriod9 = SubField(vPreviousPeriods, '|', 11);
+let vPreviousPeriod10 = SubField(vPreviousPeriods, '|', 12);
+let vPreviousPeriod11 = SubField(vPreviousPeriods, '|', 13);
+let vPreviousPeriod12 = SubField(vPreviousPeriods, '|', 14);
+
+// Output the previous periods
+Trace Previous Period 1: $(vPreviousPeriod1);
+Trace Previous Period 2: $(vPreviousPeriod2);
+Trace Previous Period 3: $(vPreviousPeriod3);
+Trace Previous Period 4: $(vPreviousPeriod4);
+Trace Previous Period 5: $(vPreviousPeriod5);
+Trace Previous Period 6: $(vPreviousPeriod6);
+Trace Previous Period 7: $(vPreviousPeriod7);
+Trace Previous Period 8: $(vPreviousPeriod8);
+Trace Previous Period 9: $(vPreviousPeriod9);
+Trace Previous Period 10: $(vPreviousPeriod10);
+Trace Previous Period 11: $(vPreviousPeriod11);
+Trace Previous Period 12: $(vPreviousPeriod12);
