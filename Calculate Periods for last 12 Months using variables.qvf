@@ -1,0 +1,66 @@
+let vActivePeriod = 'MAR-FY25';
+let MonthMap = 'AUG|SEP|OCT|NOV|DEC|JAN|FEB|MAR|APR|MAY|JUN|JUL';
+
+
+
+let vCurrentMonth = SubField(vActivePeriod, '-', 1); //MAR
+let vFiscalYear = SubField(vActivePeriod, '-', 2); //25
+
+
+let vCurrentMonthIndex = (Index(MonthMap, vCurrentMonth) - 1) / 4 + 1; 
+
+let vPreviousMonthIndex = if(vCurrentMonthIndex > 1, vCurrentMonthIndex - 1, 12);
+let vPreviousMonthIndex1 = if(vPreviousMonthIndex > 1, vPreviousMonthIndex - 1, 12); //vPreviousPeriod -1
+let vPreviousMonthIndex2 = if(vPreviousMonthIndex1 > 1, vPreviousMonthIndex1 - 1, 12); //vPreviousPeriod -2
+let vPreviousMonthIndex3 = if(vPreviousMonthIndex2 > 1, vPreviousMonthIndex2 - 1, 12); //vPreviousPeriod -3
+let vPreviousMonthIndex4 = if(vPreviousMonthIndex3 > 1, vPreviousMonthIndex3 - 1, 12); //vPreviousPeriod -4
+let vPreviousMonthIndex5 = if(vPreviousMonthIndex4 > 1, vPreviousMonthIndex4 - 1, 12); //vPreviousPeriod -5
+let vPreviousMonthIndex6 = if(vPreviousMonthIndex5 > 1, vPreviousMonthIndex5 - 1, 12); //vPreviousPeriod -6
+let vPreviousMonthIndex7 = if(vPreviousMonthIndex6 > 1, vPreviousMonthIndex6 - 1, 12); //vPreviousPeriod -7
+let vPreviousMonthIndex8 = if(vPreviousMonthIndex7 > 1, vPreviousMonthIndex7 - 1, 12); //vPreviousPeriod -8
+let vPreviousMonthIndex9 = if(vPreviousMonthIndex8 > 1, vPreviousMonthIndex8 - 1, 12); //vPreviousPeriod -9
+let vPreviousMonthIndex10 = if(vPreviousMonthIndex9 > 1, vPreviousMonthIndex9 - 1, 12); //vPreviousPeriod -10
+let vPreviousMonthIndex11 = if(vPreviousMonthIndex10 > 1, vPreviousMonthIndex10 - 1, 12); //vPreviousPeriod -11
+let vPreviousMonthIndex12 = if(vPreviousMonthIndex11 > 1, vPreviousMonthIndex11 - 1, 12); //vPreviousPeriod -12
+
+let vPreviousMonth = SubField(MonthMap, '|', vPreviousMonthIndex);
+let vPreviousMonth1 = SubField(MonthMap, '|', vPreviousMonthIndex1); //vPreviousPeriod -1
+let vPreviousMonth2 = SubField(MonthMap, '|', vPreviousMonthIndex2); //vPreviousPeriod -2
+let vPreviousMonth3 = SubField(MonthMap, '|', vPreviousMonthIndex3); //vPreviousPeriod -3
+let vPreviousMonth4 = SubField(MonthMap, '|', vPreviousMonthIndex4); //vPreviousPeriod -4
+let vPreviousMonth5 = SubField(MonthMap, '|', vPreviousMonthIndex5); //vPreviousPeriod -5
+let vPreviousMonth6 = SubField(MonthMap, '|', vPreviousMonthIndex6); //vPreviousPeriod -6
+let vPreviousMonth7 = SubField(MonthMap, '|', vPreviousMonthIndex7); //vPreviousPeriod -7
+let vPreviousMonth8 = SubField(MonthMap, '|', vPreviousMonthIndex8); //vPreviousPeriod -8
+let vPreviousMonth9 = SubField(MonthMap, '|', vPreviousMonthIndex9); //vPreviousPeriod -9
+let vPreviousMonth10 = SubField(MonthMap, '|', vPreviousMonthIndex10); //vPreviousPeriod -10
+let vPreviousMonth11 = SubField(MonthMap, '|', vPreviousMonthIndex11); //vPreviousPeriod -11
+let vPreviousMonth12 = SubField(MonthMap, '|', vPreviousMonthIndex12); //vPreviousPeriod -12
+
+let vPreviousFiscalYear = if(vPreviousMonth = 'JUL', 'FY' & (Num(SubField(vFiscalYear, 'FY', 2)) - 1), vFiscalYear);
+let vPreviousFiscalYear1 = if(vPreviousMonth1 = 'JUL', 'FY' & (Num(SubField(vPreviousFiscalYear, 'FY', 2)) - 1), vPreviousFiscalYear); //vPreviousPeriod -1
+let vPreviousFiscalYear2 = if(vPreviousMonth2 = 'JUL', 'FY' & (Num(SubField(vPreviousFiscalYear1, 'FY', 2)) - 1), vPreviousFiscalYear1); //vPreviousPeriod -2
+let vPreviousFiscalYear3 = if(vPreviousMonth3 = 'JUL', 'FY' & (Num(SubField(vPreviousFiscalYear2, 'FY', 2)) - 1), vPreviousFiscalYear2); //vPreviousPeriod -3
+let vPreviousFiscalYear4 = if(vPreviousMonth4 = 'JUL', 'FY' & (Num(SubField(vPreviousFiscalYear3, 'FY', 2)) - 1), vPreviousFiscalYear3); //vPreviousPeriod -4
+let vPreviousFiscalYear5 = if(vPreviousMonth5 = 'JUL', 'FY' & (Num(SubField(vPreviousFiscalYear4, 'FY', 2)) - 1), vPreviousFiscalYear4); //vPreviousPeriod -5
+let vPreviousFiscalYear6 = if(vPreviousMonth6 = 'JUL', 'FY' & (Num(SubField(vPreviousFiscalYear5, 'FY', 2)) - 1), vPreviousFiscalYear5); //vPreviousPeriod -6
+let vPreviousFiscalYear7 = if(vPreviousMonth7 = 'JUL', 'FY' & (Num(SubField(vPreviousFiscalYear6, 'FY', 2)) - 1), vPreviousFiscalYear6); //vPreviousPeriod -7
+let vPreviousFiscalYear8 = if(vPreviousMonth8 = 'JUL', 'FY' & (Num(SubField(vPreviousFiscalYear7, 'FY', 2)) - 1), vPreviousFiscalYear7); //vPreviousPeriod -8
+let vPreviousFiscalYear9 = if(vPreviousMonth9 = 'JUL', 'FY' & (Num(SubField(vPreviousFiscalYear8, 'FY', 2)) - 1), vPreviousFiscalYear8); //vPreviousPeriod -9
+let vPreviousFiscalYear10 = if(vPreviousMonth10 = 'JUL', 'FY' & (Num(SubField(vPreviousFiscalYear9, 'FY', 2)) - 1), vPreviousFiscalYear9); //vPreviousPeriod -10
+let vPreviousFiscalYear11 = if(vPreviousMonth11 = 'JUL', 'FY' & (Num(SubField(vPreviousFiscalYear10, 'FY', 2)) - 1), vPreviousFiscalYear10); //vPreviousPeriod -11
+let vPreviousFiscalYear12 = if(vPreviousMonth12 = 'JUL', 'FY' & (Num(SubField(vPreviousFiscalYear11, 'FY', 2)) - 1), vPreviousFiscalYear11); //vPreviousPeriod -12
+
+let vPreviousPeriod = vPreviousMonth & '-' & vPreviousFiscalYear;
+let vPreviousPeriod1 = vPreviousMonth1 & '-' & vPreviousFiscalYear1; //vPreviousPeriod -1
+let vPreviousPeriod2 = vPreviousMonth2 & '-' & vPreviousFiscalYear2; //vPreviousPeriod -2
+let vPreviousPeriod3 = vPreviousMonth3 & '-' & vPreviousFiscalYear3; //vPreviousPeriod -3
+let vPreviousPeriod4 = vPreviousMonth4 & '-' & vPreviousFiscalYear4; //vPreviousPeriod -4
+let vPreviousPeriod5 = vPreviousMonth5 & '-' & vPreviousFiscalYear5; //vPreviousPeriod -5
+let vPreviousPeriod6 = vPreviousMonth6 & '-' & vPreviousFiscalYear6; //vPreviousPeriod -6
+let vPreviousPeriod7 = vPreviousMonth7 & '-' & vPreviousFiscalYear7; //vPreviousPeriod -7
+let vPreviousPeriod8 = vPreviousMonth8 & '-' & vPreviousFiscalYear8; //vPreviousPeriod -8
+let vPreviousPeriod9 = vPreviousMonth9 & '-' & vPreviousFiscalYear9; //vPreviousPeriod -9
+let vPreviousPeriod10 = vPreviousMonth10 & '-' & vPreviousFiscalYear10; //vPreviousPeriod -10
+let vPreviousPeriod11 = vPreviousMonth11 & '-' & vPreviousFiscalYear11; //vPreviousPeriod -11
+let vPreviousPeriod12 = vPreviousMonth12 & '-' & vPreviousFiscalYear12; //vPreviousPeriod -12
