@@ -1,0 +1,58 @@
+If '$(vTaskName)' = 'Reload task of SourceId1' then
+
+SOURCE:
+LOAD * Inline [
+  Serial_No, SOURCE_ID
+   1,Source1
+];
+_TempTable:
+LOAD Concat(chr(39) & SOURCE_ID & chr(39), ',') as CombinedData Resident SOURCE;
+LET vSourceId = Peek('CombinedData',0,'_TempTable'); 
+Drop Table _TempTable;
+
+
+LET vSourceQvd = 'Source1';
+Drop Table SOURCE;
+
+Else 
+   if '$(vTaskName)' = 'Reload task of SourceId2' then
+
+SOURCE:
+LOAD * Inline [
+  Serial_No, SOURCE_ID
+   1,SourceId2
+];
+_TempTable:
+LOAD Concat(distinct chr(39) & SOURCE_ID & chr(39), ',') as CombinedData Resident SOURCE;
+LET vSourceId = Peek('CombinedData',0,'_TempTable'); 
+Drop Table _TempTable;
+
+
+LET vSourceQvd = 'eBiz';
+
+Drop Table SOURCE;
+
+Else 
+	if '$(vTaskName)' = 'Reload task of SourceId3' then
+SOURCE:
+LOAD * Inline [
+  Serial_No, SOURCE_ID
+   1,SourceId3A
+   2,SourceId3B
+   3,SourceId3C
+];
+
+_TempTable:
+LOAD Concat(chr(39) & SOURCE_ID & chr(39), ',') as CombinedData Resident SOURCE;
+LET vSourceId = Peek('CombinedData',0,'_TempTable');  
+Drop Table _TempTable;
+
+
+LET vSourceQvd = 'Dbill';
+
+Drop Table SOURCE;
+
+
+    	EndIf;
+	EndIf;   
+EndIf;
