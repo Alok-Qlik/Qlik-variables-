@@ -15,7 +15,7 @@ LET vSourceQvd = 'Source1';
 Drop Table SOURCE;
 
 Else 
-   if '$(vTaskName)' = 'Reload task of SourceId2' then
+   if '$(vTaskName)' = 'Reload task of Source2' then
 
 SOURCE:
 LOAD * Inline [
@@ -28,12 +28,12 @@ LET vSourceId = Peek('CombinedData',0,'_TempTable');
 Drop Table _TempTable;
 
 
-LET vSourceQvd = 'eBiz';
+LET vSourceQvd = 'Source2';
 
 Drop Table SOURCE;
 
 Else 
-	if '$(vTaskName)' = 'Reload task of SourceId3' then
+	if '$(vTaskName)' = 'Reload task of Source3' then
 SOURCE:
 LOAD * Inline [
   Serial_No, SOURCE_ID
@@ -48,7 +48,7 @@ LET vSourceId = Peek('CombinedData',0,'_TempTable');
 Drop Table _TempTable;
 
 
-LET vSourceQvd = 'Dbill';
+LET vSourceQvd = 'Source3';
 
 Drop Table SOURCE;
 
